@@ -18,12 +18,12 @@ public class Ship extends MovingThing
 
 	public Ship()
 	{
-		this(0,0,0);
+		this(0,0,5);
 	}
 
 	public Ship(int x, int y)
 	{
-		this(x,y,0);
+		this(x,y,5);
 	}
 
 	public Ship(int x, int y, int s)
@@ -55,7 +55,7 @@ public class Ship extends MovingThing
 
 	public void draw( Graphics window )
 	{
-   	window.drawImage(image,getX(),getY(),80,80,null);
+		window.drawImage(image,getX(),getY(),80,80,null);
 	}
 
 	public String toString()

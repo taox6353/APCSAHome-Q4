@@ -153,7 +153,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 	public void keyTyped(KeyEvent e)
 	{
-
+		
 	}
 
    public void run()
