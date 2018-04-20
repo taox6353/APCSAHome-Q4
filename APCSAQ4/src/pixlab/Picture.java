@@ -514,6 +514,32 @@ public void myCollage(Picture fromPic)
 		 } 
 }
 
+//With the caterpillar picture, 2-3 blur calls creates a notable blur. Values used were 30,10,100,100, since the first value represents the x (the columns). 
+//For unknown reasons, it might take a little while. Three calls to the blur method for a 100x100 pixel blur took around 6 seconds to load.  
+public void blur(Picture fromPic,int x,int y,int width,int height){
+	for (int row = y; row < y+height; row++)
+	 {
+	   for (int col = x; col < x+width ; col++)
+	   {
+			Pixel[][] fromPixels = fromPic.getPixels2D();
+			
+			Pixel basePix = fromPixels[row][col];
+			Pixel refPix1 = fromPixels[row][col+1];
+			Pixel refPix2 = fromPixels[row+1][col];
+			Pixel refPix3 = fromPixels[row][col-1];
+			Pixel refPix4 = fromPixels[row-1][col];
+			
+			int r = basePix.getRed()+refPix1.getRed()+refPix2.getRed()+refPix3.getRed()+refPix4.getRed();
+			int g = basePix.getGreen()+refPix1.getGreen()+refPix2.getGreen()+refPix3.getGreen()+refPix4.getGreen();
+			int b = basePix.getBlue()+refPix1.getBlue()+refPix2.getBlue()+refPix3.getBlue()+refPix4.getBlue();
+		   
+		   basePix.setRed(r/5);
+		   basePix.setGreen(g/5);
+		   basePix.setBlue(b/5);
+	   }
+	 } 
+}
+
 
 
 

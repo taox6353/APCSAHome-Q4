@@ -159,6 +159,17 @@ public class PictureTester
     beach.explore();
   }
   
+  /** Method to test blur */
+  public static void testBlur()
+  {
+    Picture pic = new Picture("caterpillar.jpg");
+    pic.explore();
+    pic.blur(pic,30,10,100,100);
+    pic.blur(pic,30,10,100,100);
+    pic.blur(pic,30,10,100,100);
+    pic.explore();
+  }
+  
   
   
   /** Main method for testing.  Every class can have a main
@@ -168,6 +179,9 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
+	  
+	testBlur();
+	  
 	//testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
@@ -186,7 +200,7 @@ public class PictureTester
     //testCollage();
     //testCopy();
 	//testMyCollage();
-    testEdgeDetection();
+    //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
