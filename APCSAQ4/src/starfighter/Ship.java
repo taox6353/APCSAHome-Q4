@@ -18,12 +18,12 @@ public class Ship extends MovingThing
 
 	public Ship()
 	{
-		this(0,0,5);
+		this(0,0,2);
 	}
 
 	public Ship(int x, int y)
 	{
-		this(x,y,5);
+		this(x,y,2);
 	}
 
 	public Ship(int x, int y, int s)
@@ -32,7 +32,7 @@ public class Ship extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("src\\starfighter\\ship.jpg"));
+			image = ImageIO.read(new File("src/starfighter/ship.jpg"));
 		}
 		catch(Exception e)
 		{
@@ -60,6 +60,6 @@ public class Ship extends MovingThing
 
 	public String toString()
 	{
-		return super.toString() + getSpeed();
+		return "Ship" + " " + getX() + " " + getY() + " " + getSpeed();
 	}
 }

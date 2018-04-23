@@ -81,6 +81,6 @@ public abstract class MovingThing implements Locatable
 
 	public String toString()
 	{
-		return "";
+		return "MovingThing";
 	}
 }
