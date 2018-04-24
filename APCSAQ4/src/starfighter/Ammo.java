@@ -48,12 +48,42 @@ public class Ammo extends MovingThing
 
 	public void draw( Graphics window )
 	{
-		window.setColor(Color.YELLOW);
-		window.fillRect(getX(), getY(), 5, 5);
-		
 		//add code to draw the ammo
-		if(getY()>-5)
-			move("UP");
+		if(speed==3){
+			window.setColor(Color.WHITE);
+			window.fillRect(getX(), getY(), 5, 5);
+			if(getY()>-5)
+				move("UP");
+		}
+		else if(speed==2){
+			int r = (int)(Math.random()*256);
+			int g = (int)(Math.random()*256);
+			int b = (int)(Math.random()*256);
+			
+			Color col = new Color(r,g,b);
+			
+			window.setColor(col);
+			window.fillRect(getX(), getY(), 5, 5);
+			int leftright = (int)(Math.random()*2);
+			if(getY()>-5){
+				if(leftright==0){
+					move("LEFT");
+					move("UP");
+					move("LEFT");
+					move("UP");
+					move("LEFT");
+					move("DOWN");
+				}
+				else if(leftright==1){
+					move("RIGHT");
+					move("UP");
+					move("RIGHT");
+					move("UP");
+					move("RIGHT");
+					move("DOWN");
+				}
+			}
+		}
 	}
 
 	public String toString()

@@ -22,6 +22,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	private int score;
+	private boolean lose;
 
 	/* uncomment once you are ready for this part
 	 */
@@ -44,6 +46,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		alienOne = new Alien(20,0,3);
 		alienTwo = new Alien(680,0,3);
 		shots = new ArrayList<Ammo>();
+		score = 0;
+		lose = false;
 		
 //		alienz = new Alien[2][2];
 		aliens = new ArrayList<Alien>();
@@ -87,6 +91,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
+		
+		graphToBack.setColor(Color.CYAN);
+		graphToBack.drawString("Score: " + score, 500, 500);
 		ship.draw(graphToBack);
 		
 		for(int i=0;i<aliens.size();i++){
@@ -95,6 +102,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		alienOne.draw(graphToBack);
 		alienTwo.draw(graphToBack);
+		
+		
 		
 
 		if(keys[0] == true)
@@ -117,21 +126,59 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if(keys[4] == true)
 		{
-			shots.add(new Ammo(ship.getX()+36,ship.getY(),3));
+			int col = (int)(Math.random()*99+1);
+			if(col>90)
+				shots.add(new Ammo(ship.getX()+36,ship.getY(),3));
+			else
+				shots.add(new Ammo(ship.getX()+36,ship.getY(),2));
 			keys[4] = false;
 		}
 		
 		for(int i=0;i<shots.size();i++){
 			shots.get(i).draw(graphToBack);
+			if((alienOne.getX()+80>=shots.get(i).getX()&&alienOne.getX()<=shots.get(i).getX())&&
+					(alienOne.getY()+80>=shots.get(i).getY()&&alienOne.getY()<=shots.get(i).getY())){
+				if(shots.get(i).getSpeed()==6){
+					alienOne.setPos(1200, 1200);
+					graphToBack.setColor(Color.BLACK);
+					graphToBack.drawString("Score: " + score, 500, 500);
+					score += 24;
+					graphToBack.setColor(Color.CYAN);
+					graphToBack.drawString("Score: " + score, 500, 500);
+				}
+			}
+			if((alienTwo.getX()+80>=shots.get(i).getX()&&alienTwo.getX()<=shots.get(i).getX())&&
+					(alienTwo.getY()+80>=shots.get(i).getY()&&alienTwo.getY()<=shots.get(i).getY())){
+				if(shots.get(i).getSpeed()==6){
+					alienTwo.setPos(1200, 1200);
+					graphToBack.setColor(Color.BLACK);
+					graphToBack.drawString("Score: " + score, 500, 500);
+					score += 24;
+					graphToBack.setColor(Color.CYAN);
+					graphToBack.drawString("Score: " + score, 500, 500);
+				}
+			}
 			for(int a=0;a<aliens.size();a++){
 				if((aliens.get(a).getX()+80>=shots.get(i).getX()&&aliens.get(a).getX()<=shots.get(i).getX())&&
 						(aliens.get(a).getY()+80>=shots.get(i).getY()&&aliens.get(a).getY()<=shots.get(i).getY())){
 					aliens.get(a).setPos(1200, 1200);
+					aliens.remove(aliens.get(a));
+					graphToBack.setColor(Color.BLACK);
+					graphToBack.drawString("Score: " + score, 500, 500);
+					score += 12;
+					graphToBack.setColor(Color.CYAN);
+					graphToBack.drawString("Score: " + score, 500, 500);
+					
 				}
 			}
 		}
 		
-		
+		if(alienOne.getX()<10||alienOne.getX()>700){
+			alienOne.setSpeed((alienOne.getSpeed())*-1);
+		}
+		if(alienTwo.getX()<10||alienTwo.getX()>700){
+			alienTwo.setSpeed((alienTwo.getSpeed())*-1);
+		}
 		
 		//add in collision detection
 		for(int i=0;i<aliens.size();i++){
@@ -140,6 +187,35 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			}
 		}
 		
+		if(alienOne.getX()<10||alienOne.getX()>700){
+			alienOne.setSpeed((alienOne.getSpeed())*-1);
+		}
+		if(alienTwo.getX()<10||alienTwo.getX()>700){
+			alienTwo.setSpeed((alienTwo.getSpeed())*-1);
+		}
+		for(int a=0;a<aliens.size();a++){
+				if((aliens.get(a).getX()+80>=ship.getX()&&aliens.get(a).getX()<=ship.getX())&&
+						(aliens.get(a).getY()+80>=ship.getY()&&aliens.get(a).getY()<=ship.getY())){
+					for(int b=0;b<aliens.size();b++){
+						lose = true;
+					}
+					
+				}
+		}
+		
+		if(!lose&&aliens.size()==0){
+			graphToBack.setColor(Color.CYAN);
+			graphToBack.drawString("YOU WON WITH A SCORE OF "+score+"! ", 250, 250);
+		}
+		
+		if(lose){
+			for(int b=0;b<aliens.size();b++){
+				aliens.remove(b);
+			}	
+			graphToBack.setColor(Color.CYAN);
+			graphToBack.drawString("YOU LOST!", 250, 250);
+			ship.setPos(8000, 8000);
+		}
 		
 
 		twoDGraph.drawImage(back, null, 0, 0);
