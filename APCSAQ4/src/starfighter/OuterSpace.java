@@ -145,6 +145,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					score += 24;
 					graphToBack.setColor(Color.CYAN);
 					graphToBack.drawString("Score: " + score, 500, 500);
+					shots.get(i).setPos(5000,0);
 				}
 			}
 			if((alienTwo.getX()+80>=shots.get(i).getX()&&alienTwo.getX()<=shots.get(i).getX())&&
@@ -156,6 +157,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					score += 24;
 					graphToBack.setColor(Color.CYAN);
 					graphToBack.drawString("Score: " + score, 500, 500);
+					shots.get(i).setPos(5000,0);
 				}
 			}
 			for(int a=0;a<aliens.size();a++){
@@ -168,10 +170,24 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					score += 12;
 					graphToBack.setColor(Color.CYAN);
 					graphToBack.drawString("Score: " + score, 500, 500);
+					shots.get(i).setPos(5000,0);
 					
 				}
 			}
 		}
+		
+		if(ship.getX()>700||ship.getX()<0||ship.getY()>500||ship.getY()<0){
+			graphToBack.setColor(Color.CYAN);
+			graphToBack.drawString("You are lost in space! Return to the battle zone!", 200, 500);;
+		}
+		if(ship.getX()<700&&ship.getY()<500&&
+				ship.getX()>0&&ship.getY()>0){
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.drawString("You are lost in space! Return to the battle zone!", 200, 500);;
+		}
+			
+		
+		
 		
 		if(alienOne.getX()<10||alienOne.getX()>700){
 			alienOne.setSpeed((alienOne.getSpeed())*-1);
