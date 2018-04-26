@@ -176,14 +176,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			}
 		}
 		
-		if(ship.getX()>700||ship.getX()<0||ship.getY()>500||ship.getY()<0){
+		if(ship.getX()>750||ship.getX()<-50||ship.getY()>500||ship.getY()<-50){
 			graphToBack.setColor(Color.CYAN);
-			graphToBack.drawString("You are lost in space! Return to the battle zone!", 200, 500);;
+			graphToBack.drawString("You are lost in space! Return to the battle zone!", 200, 550);;
 		}
-		if(ship.getX()<700&&ship.getY()<500&&
-				ship.getX()>0&&ship.getY()>0){
+		if(ship.getX()<750&&ship.getY()<500&&ship.getX()>-50&&ship.getY()>-50){
 			graphToBack.setColor(Color.BLACK);
-			graphToBack.drawString("You are lost in space! Return to the battle zone!", 200, 500);;
+			graphToBack.drawString("You are lost in space! Return to the battle zone!", 200, 550);;
 		}
 			
 		
