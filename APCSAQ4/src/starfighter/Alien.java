@@ -57,6 +57,8 @@ public class Alien extends MovingThing
 		window.drawImage(image,getX(),getY(),80,80,null);
 		move("RIGHT");
 		
+		
+		
 		//Colliding stuff moved to OuterSpace class
 //		if(speed>0&&getX()<700&&getX()>10){
 //			setSpeed(3);

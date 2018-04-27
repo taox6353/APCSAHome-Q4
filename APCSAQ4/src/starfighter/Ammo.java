@@ -46,6 +46,12 @@ public class Ammo extends MovingThing
 	   return speed;
 	}
 
+	public void aliendraw(Graphics window){
+		window.setColor(Color.RED);
+		window.fillRect(getX(), getY(), 2, 2);
+		move("DOWN");
+	}
+	
 	public void draw( Graphics window )
 	{
 		//add code to draw the ammo
